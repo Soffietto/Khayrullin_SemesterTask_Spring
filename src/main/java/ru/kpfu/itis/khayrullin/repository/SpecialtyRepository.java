@@ -5,7 +5,7 @@ import ru.kpfu.itis.khayrullin.model.Specialty;
 
 import java.util.List;
 
-public interface SpecialityRepository extends JpaRepository<Specialty, Long> {
+public interface SpecialtyRepository extends JpaRepository<Specialty, Long> {
 
-    List<Specialty> findAllByCity(String city);
+    List<Specialty> findAllByCityId(Long cityId);
 }

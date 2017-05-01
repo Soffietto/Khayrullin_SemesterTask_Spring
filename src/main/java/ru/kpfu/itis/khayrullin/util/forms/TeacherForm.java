@@ -14,12 +14,6 @@ public class TeacherForm {
 
     private int seniority;
 
-    private City city;
-
-    private Studio studio;
-
-    private Specialty specialty;
-
     private String regalia;
 
     private String phone;
@@ -54,30 +48,6 @@ public class TeacherForm {
 
     public void setSeniority(int seniority) {
         this.seniority = seniority;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public Studio getStudio() {
-        return studio;
-    }
-
-    public void setStudio(Studio studio) {
-        this.studio = studio;
-    }
-
-    public Specialty getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(Specialty specialty) {
-        this.specialty = specialty;
     }
 
     public String getRegalia() {

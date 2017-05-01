@@ -1,6 +1,7 @@
 package ru.kpfu.itis.khayrullin.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Teacher {
@@ -32,6 +33,9 @@ public class Teacher {
     private String regalia;
 
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Schedule> schedules;
 
     public Long getId() {
         return id;
@@ -111,5 +115,13 @@ public class Teacher {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }

@@ -1,16 +1,19 @@
 package ru.kpfu.itis.khayrullin.model;
 
 import javax.persistence.*;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.List;
 
 @Entity
-public class Specialty {
+public class Specialty implements Externalizable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
     @ManyToOne
@@ -50,5 +53,15 @@ public class Specialty {
 
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = teachers;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput objectOutput) throws IOException {
+        //empty methods
+    }
+
+    @Override
+    public void readExternal(ObjectInput objectInput) throws IOException, ClassNotFoundException {
+        //empty methods
     }
 }

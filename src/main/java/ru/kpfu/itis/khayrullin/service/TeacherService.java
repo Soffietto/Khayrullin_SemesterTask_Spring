@@ -8,5 +8,11 @@ public interface TeacherService {
 
     void add(Teacher teacher);
 
-    List<Teacher> findAllByStudioAndSpecialtyAndCity(String studio, String specialty, String city);
+    List<Teacher> findAllByStudioIdAndSpecialtyIdAndCityId(Long studioId, Long specialtyId, Long cityId);
+
+    List<Teacher> getAll();
+
+    Teacher findOneById(Long id);
+
+    void delete(Long id);
 }

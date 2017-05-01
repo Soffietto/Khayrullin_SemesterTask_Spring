@@ -3,7 +3,10 @@
     <hr>
 <#list city_list as c>
     <div>
-        <a href="${admin_url}/city=${c.id}">${c.name}</a>
+        <p>City: <a href="/city=${c.id}">${c.name}</a></p>
+        <#if admin>
+            <#include "city_delete_form.ftl">
+        </#if>
     </div>
     <hr>
 <#else>

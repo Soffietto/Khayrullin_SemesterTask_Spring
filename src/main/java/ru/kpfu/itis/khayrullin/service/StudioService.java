@@ -8,7 +8,11 @@ public interface StudioService {
 
     void add(Studio studio);
 
+    Studio findOneById(Long id);
+
     List<Studio> findAllByCityId(Long city);
 
     List<Studio> getAll();
+
+    void delete(Long id);
 }

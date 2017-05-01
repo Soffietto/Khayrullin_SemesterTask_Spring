@@ -29,8 +29,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/sign_in", "/sign_up").anonymous()
-                .antMatchers("/home/**").hasRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN");
+                .antMatchers("/home", "/city**/**").hasRole("USER")
+                .antMatchers("/**").hasRole("ADMIN");
 
         http.csrf().disable()
                 .formLogin()

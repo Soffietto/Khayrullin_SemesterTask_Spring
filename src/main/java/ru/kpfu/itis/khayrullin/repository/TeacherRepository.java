@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 
-    List<Teacher> findAllByStudioAndSpecialtyAndCity(String studio, String specialty, String city);
+    List<Teacher> findAllByStudioIdAndSpecialtyIdAndCityId(Long studioId, Long specialtyId, Long cityId);
 
 }

@@ -29,12 +29,12 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public City findOneByName(String name) {
-        return cityRepository.findOneByName(name);
+    public List<City> getAll() {
+        return cityRepository.findAll();
     }
 
     @Override
-    public List<City> getAll() {
-        return cityRepository.findAll();
+    public void delete(Long id) {
+        cityRepository.delete(id);
     }
 }

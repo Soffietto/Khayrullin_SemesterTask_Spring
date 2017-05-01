@@ -1,17 +1,20 @@
 <#assign sf=JspTaglibs["http://www.springframework.org/tags/form"]>
 <#include "welcome.ftl">
-
-<@sf.form action="/admin/teacher" method="post" modelAttribute="teacher">
+<@sf.form action="/admin/city=${city_id}/studio=${studio_id}/specialty=${specialty_id}/new_teacher" method="post" modelAttribute="teacher">
+<h4>City: ${city_name}</h4>
+<h4>Studio: ${studio_name}</h4>
+<h4>Specialty: ${specialty_name}</h4>
+<h4>Please, enter a new teacher:</h4>
 <fieldset>
     <div>
-        <@sf.label path="first_name">First name: </@sf.label>
-        <@sf.input path="first_name" type="text"/>
-        <@sf.errors path="first_name"/>
+        <@sf.label path="firstName">First name: </@sf.label>
+        <@sf.input path="firstName" type="text"/>
+        <@sf.errors path="firstName"/>
     </div>
     <div>
-        <@sf.label path="last_name">Last name: </@sf.label>
-        <@sf.input path="last_name" type="text"/>
-        <@sf.errors path="last_name"/>
+        <@sf.label path="lastName">Last name: </@sf.label>
+        <@sf.input path="lastName" type="text"/>
+        <@sf.errors path="lastName"/>
     </div>
     <div>
         <@sf.label path="age">Age: </@sf.label>
@@ -20,23 +23,8 @@
     </div>
     <div>
         <@sf.label path="seniority">Seniority: </@sf.label>
-        <@sf.input path="senioruty" type="number"/>
+        <@sf.input path="seniority" type="number"/>
         <@sf.errors path="seniority"/>
-    </div>
-    <div>
-        <@sf.label path="city">City:</@sf.label>
-        <@sf.input path="city" type="text"/>
-        <@sf.errors path="city"/>
-    </div>
-    <div>
-        <@sf.label path="studio">Studio:</@sf.label>
-        <@sf.input path="studio" type="text"/>
-        <@sf.errors path="studio"/>
-    </div>
-    <div>
-        <@sf.label path="speciality">Speciality:</@sf.label>
-        <@sf.input path="speciality" type="text"/>
-        <@sf.errors path="speciality"/>
     </div>
     <div>
         <@sf.label path="regalia">Regalias:</@sf.label>
@@ -53,3 +41,5 @@
     </div>
 </fieldset>
 </@sf.form>
+<a href="/city=${city_id}/studio=${studio_id}/specialty=${specialty_id}">Back</a>
+<a href="/home">Home</a>

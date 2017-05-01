@@ -24,6 +24,11 @@ public class StudioServiceImpl implements StudioService {
     }
 
     @Override
+    public Studio findOneById(Long id) {
+        return studioRepository.findOne(id);
+    }
+
+    @Override
     public List<Studio> findAllByCityId(Long city) {
         return studioRepository.findAllByCityId(city);
     }
@@ -31,5 +36,10 @@ public class StudioServiceImpl implements StudioService {
     @Override
     public List<Studio> getAll() {
         return studioRepository.findAll();
+    }
+
+    @Override
+    public void delete(Long id) {
+        studioRepository.delete(id);
     }
 }

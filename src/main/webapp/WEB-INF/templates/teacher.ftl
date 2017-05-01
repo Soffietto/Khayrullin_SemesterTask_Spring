@@ -1,12 +1,7 @@
 <#include "welcome.ftl">
-
-<div>
-    <h2>Choose a teacher:</h2>
-<#list teacher_list as t>
-    <div>
-        <a href="/city?=${city}&studio?=${studio}&speciality?=${speciality}&teacher?=${t.id}">${t.name}</a>
-    </div>
-<#else>
-    <p>No teachers!</p>
-</#list>
-</div>
+<#include "teacher_list.ftl">
+<#if admin>
+    <a href="/admin/city=${city_id}/studio=${studio_id}/specialty=${specialty_id}/new_teacher">New Teacher!</a>
+</#if>
+<a href="/city=${city_id}/studio=${studio_id}">Back</a>
+<a href="/home">Home</a>
