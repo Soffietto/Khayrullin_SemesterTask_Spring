@@ -43,7 +43,7 @@ public class AuthProviderImpl implements AuthenticationProvider {
 
         List<GrantedAuthority> authorities = new ArrayList<>();
 
-        if(user.getEmail().equals("admin@admin.com")) {
+        if (user.getEmail().equals("admin@admin.com")) {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));

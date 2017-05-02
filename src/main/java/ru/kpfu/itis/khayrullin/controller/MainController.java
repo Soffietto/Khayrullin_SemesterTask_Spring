@@ -4,17 +4,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import ru.kpfu.itis.khayrullin.model.*;
 import ru.kpfu.itis.khayrullin.service.*;
-import ru.kpfu.itis.khayrullin.util.forms.*;
-import ru.kpfu.itis.khayrullin.util.transformers.*;
 
 import java.util.List;
-import java.util.function.Function;
 
 @Controller
 public class MainController {
@@ -24,11 +19,6 @@ public class MainController {
     private final TeacherService teacherService;
     private final StudioService studioService;
     private final ScheduleService scheduleService;
-    private final Function<CityForm, City> cityTransfromer;
-    private final Function<SpecialtyForm, Specialty> specialtyTransformer;
-    private final Function<TeacherForm, Teacher> teacherTransformer;
-    private final Function<StudioForm, Studio> studioTransformer;
-    private final Function<ScheduleForm, Schedule> scheduleTransformer;
 
     public MainController(CityService cityService, SpecialtyService specialtyService,
                           TeacherService teacherService, StudioService studioService,
@@ -38,15 +28,10 @@ public class MainController {
         this.teacherService = teacherService;
         this.studioService = studioService;
         this.scheduleService = scheduleService;
-        this.scheduleTransformer = new ScheduleFormToScheduleTransformer();
-        this.specialtyTransformer = new SpecialtyFormToSpecialtyTransformer();
-        this.teacherTransformer = new TeacherFormToTeahcerTransformer();
-        this.studioTransformer = new StudioFormToStudioTransformer();
-        this.cityTransfromer = new CityFormToCityTransformer();
     }
 
     @RequestMapping("/home")
-    public String getAdminPage(Model model) {
+    public String getHomePage(Model model) {
         User user = getCurrentUser(model);
         List<City> cityList = cityService.getAll();
         model.addAttribute("city_list", cityList);
@@ -67,7 +52,7 @@ public class MainController {
     @RequestMapping("/city={city_id}/studio={studio_id}")
     public String getSpecialtyPage(@PathVariable(value = "city_id") Long cityId,
                                    @PathVariable(value = "studio_id") Long studioId,
-                                   Model model){
+                                   Model model) {
         User user = getCurrentUser(model);
         City city = cityService.findOneById(cityId);
         Studio studio = studioService.findOneById(studioId);
@@ -84,7 +69,7 @@ public class MainController {
     public String getTeacherPage(@PathVariable(value = "city_id") Long cityId,
                                  @PathVariable(value = "studio_id") Long studioId,
                                  @PathVariable(value = "specialty_id") Long specialtyId,
-                                 Model model){
+                                 Model model) {
         User user = getCurrentUser(model);
         City city = cityService.findOneById(cityId);
         Studio studio = studioService.findOneById(studioId);
@@ -106,7 +91,7 @@ public class MainController {
                                   @PathVariable(value = "studio_id") Long studioId,
                                   @PathVariable(value = "specialty_id") Long specialtyId,
                                   @PathVariable(value = "teacher_id") Long teacherId,
-                                  Model model){
+                                  Model model) {
         User user = getCurrentUser(model);
         City city = cityService.findOneById(cityId);
         Studio studio = studioService.findOneById(studioId);
@@ -125,22 +110,21 @@ public class MainController {
     }
 
 
-
     private User getCurrentUser(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<GrantedAuthority> authorities = (List<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         model.addAttribute("admin", false);
-        for (GrantedAuthority authority: authorities) {
-            if(authority.getAuthority().equals("ROLE_ADMIN"))
+        for (GrantedAuthority authority : authorities) {
+            if (authority.getAuthority().equals("ROLE_ADMIN"))
                 model.addAttribute("admin", true);
         }
         model.addAttribute("user", user);
         return user;
     }
 
-    private void setWeekDays(Model model, Long teacherId){
+    private void setWeekDays(Model model, Long teacherId) {
         Schedule schedule = scheduleService.findOneByTeacherId(teacherId);
-        if(schedule == null){
+        if (schedule == null) {
             model.addAttribute("monday", "-");
             model.addAttribute("tuesday", "-");
             model.addAttribute("wednesday", "-");
@@ -148,7 +132,7 @@ public class MainController {
             model.addAttribute("friday", "-");
             model.addAttribute("saturday", "-");
             model.addAttribute("sunday", "-");
-        }else {
+        } else {
 
             if (!schedule.getMonday().equals(""))
                 model.addAttribute("monday", schedule.getMonday());

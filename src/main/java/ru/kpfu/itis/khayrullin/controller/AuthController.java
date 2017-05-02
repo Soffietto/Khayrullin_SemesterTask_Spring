@@ -30,7 +30,7 @@ public class AuthController {
     @RequestMapping("/sign_in")
     public String getSignIn(@RequestParam(value = "error", required = false) Boolean error,
                             Model model) {
-        if(Boolean.TRUE.equals(error)){
+        if (Boolean.TRUE.equals(error)) {
             model.addAttribute("error", error);
         }
         model.addAttribute("signInForm", new SignInForm());
@@ -38,19 +38,19 @@ public class AuthController {
     }
 
     @RequestMapping("/sign_up")
-    public String getSignUp(Model model){
+    public String getSignUp(Model model) {
         model.addAttribute("user", new SignUpForm());
         return "sign_up";
     }
 
     @RequestMapping(value = "/sign_up", method = RequestMethod.POST)
     public String signUp(@ModelAttribute("user") @Valid SignUpForm signUpForm,
-                         BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "sign_up";
         }
         User user = transformer.apply(signUpForm);
-        if(!userService.getAll().contains(user))
+        if (!userService.getAll().contains(user))
             userService.add(user);
         return "redirect:/home";
     }

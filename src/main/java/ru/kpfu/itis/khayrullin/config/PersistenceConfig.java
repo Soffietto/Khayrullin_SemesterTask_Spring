@@ -33,7 +33,7 @@ public class PersistenceConfig implements EnvironmentAware {
 
     @Override
     public void setEnvironment(Environment environment) {
-        this.env=environment;
+        this.env = environment;
     }
 
     @Bean

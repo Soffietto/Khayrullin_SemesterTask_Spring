@@ -1,21 +1,24 @@
 package ru.kpfu.itis.khayrullin.util.forms;
 
-import ru.kpfu.itis.khayrullin.model.City;
-import ru.kpfu.itis.khayrullin.model.Specialty;
-import ru.kpfu.itis.khayrullin.model.Studio;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class TeacherForm {
 
+    private static final String BLANK_MESSAGE = "This field is mendatory!";
+
+    @NotBlank(message = BLANK_MESSAGE)
     private String firstName;
 
+    @NotBlank(message = BLANK_MESSAGE)
     private String lastName;
 
-    private int age;
+    private Integer age;
 
-    private int seniority;
+    private Integer seniority;
 
     private String regalia;
 
+    @NotBlank(message = BLANK_MESSAGE)
     private String phone;
 
     public String getFirstName() {
@@ -34,7 +37,7 @@ public class TeacherForm {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
@@ -42,7 +45,7 @@ public class TeacherForm {
         this.age = age;
     }
 
-    public int getSeniority() {
+    public Integer getSeniority() {
         return seniority;
     }
 

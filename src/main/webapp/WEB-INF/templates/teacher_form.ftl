@@ -18,12 +18,12 @@
     </div>
     <div>
         <@sf.label path="age">Age: </@sf.label>
-        <@sf.input path="age" type="number"/>
+        <@sf.input path="age" type="text"/>
         <@sf.errors path="age"/>
     </div>
     <div>
         <@sf.label path="seniority">Seniority: </@sf.label>
-        <@sf.input path="seniority" type="number"/>
+        <@sf.input path="seniority" type="text"/>
         <@sf.errors path="seniority"/>
     </div>
     <div>

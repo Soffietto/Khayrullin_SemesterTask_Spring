@@ -1,9 +1,12 @@
 package ru.kpfu.itis.khayrullin.util.forms;
 
-import ru.kpfu.itis.khayrullin.model.City;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class SpecialtyForm {
 
+    private static final String BLANK_MESSAGE = "This field is mendatory!";
+
+    @NotBlank(message = BLANK_MESSAGE)
     private String name;
 
     public String getName() {

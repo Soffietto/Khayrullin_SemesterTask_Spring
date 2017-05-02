@@ -9,12 +9,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.AccessDeniedHandler;
-import ru.kpfu.itis.khayrullin.security.AuthProviderImpl;
 
 @Configuration
 @EnableWebSecurity
 @ComponentScan("ru.kpfu.itis.khayrullin.security")
-public class SecurityConfig  extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final AuthenticationProvider authProvider;
     private final AccessDeniedHandler accessDeniedHandler;

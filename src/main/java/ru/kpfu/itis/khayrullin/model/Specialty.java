@@ -8,7 +8,7 @@ import java.io.ObjectOutput;
 import java.util.List;
 
 @Entity
-public class Specialty implements Externalizable{
+public class Specialty implements Externalizable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
