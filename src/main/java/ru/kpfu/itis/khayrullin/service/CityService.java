@@ -10,6 +10,8 @@ public interface CityService {
 
     City findOneById(Long id);
 
+    City findOneByName(String name);
+
     List<City> getAll();
 
     void delete(Long id);

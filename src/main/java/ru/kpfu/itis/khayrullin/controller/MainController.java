@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.kpfu.itis.khayrullin.model.*;
 import ru.kpfu.itis.khayrullin.service.*;
 
@@ -38,6 +40,14 @@ public class MainController {
         return "home";
     }
 
+    @RequestMapping(value = "/city_search", method = RequestMethod.POST)
+    public String getCitySearchPage(@RequestParam("search") String cityName){
+        City city = cityService.findOneByName(cityName);
+        if(city == null)
+            return "redirect:/home";
+        return "redirect:/city=" + city.getId();
+    }
+
     @RequestMapping("/city={city_id}")
     public String getStudioPage(@PathVariable(value = "city_id") Long cityId, Model model) {
         User user = getCurrentUser(model);
@@ -47,6 +57,15 @@ public class MainController {
         List<Studio> studioList = studioService.findAllByCityId(cityId);
         model.addAttribute("studio_list", studioList);
         return "studio";
+    }
+
+    @RequestMapping(value = "/city={city_id}/studio_search", method = RequestMethod.POST)
+    public String getStudioSearchPage(@RequestParam("search") String studioName,
+                                      @PathVariable("city_id") Long cityId){
+        Studio studio = studioService.findOneByNameAndCityId(studioName, cityId);
+        if(studio == null)
+            return "redirect:/city={city_id}";
+        return "redirect:/city={city_id}/studio=" + studio.getId();
     }
 
     @RequestMapping("/city={city_id}/studio={studio_id}")
@@ -65,6 +84,15 @@ public class MainController {
         return "specialty";
     }
 
+    @RequestMapping(value = "/city={city_id}/studio={studio_id}/specialty_search")
+    public String getSpecialtySearchPage(@RequestParam("search") String specialtyName,
+                                         @PathVariable("city_id") Long cityId){
+        Specialty specialty = specialtyService.findOneByNameAndCityId(specialtyName, cityId);
+        if(specialty == null)
+            return "redirect:/city={city_id}/studio={studio_id}";
+        return "redirect:/city={city_id}/studio={studio_id}/specialty=" + specialty.getId();
+    }
+
     @RequestMapping("/city={city_id}/studio={studio_id}/specialty={specialty_id}")
     public String getTeacherPage(@PathVariable(value = "city_id") Long cityId,
                                  @PathVariable(value = "studio_id") Long studioId,
@@ -81,9 +109,22 @@ public class MainController {
         model.addAttribute("specialty_id", specialtyId);
         model.addAttribute("specialty_name", specialty.getName());
         List<Teacher> teachers =
-                teacherService.findAllByStudioIdAndSpecialtyIdAndCityId(studioId, specialtyId, cityId);
+                teacherService.findAllByStudioIdAndSpecialtyNameAndCityId(studioId, specialty.getName(), cityId);
         model.addAttribute("teacher_list", teachers);
         return "teacher";
+    }
+
+    @RequestMapping(value = "/city={city_id}/studio={studio_id}/specialty={specialty_id}/teacher_search", method = RequestMethod.POST)
+    public String getTeacherSearchPage(@PathVariable(value = "city_id") Long cityId,
+                                       @PathVariable(value = "studio_id") Long studioId,
+                                       @PathVariable(value = "specialty_id") Long specialtyId,
+                                       @RequestParam("search") String lastName){
+        Studio studio = studioService.findOneById(studioId);
+        Teacher teacher = teacherService.findOneByStudioIdAndSpecialtyNameAndCityIdAndLastName(cityId,
+                studio.getName(), specialtyId, lastName);
+        if(teacher == null)
+            return "redirect:/city={city_id}/studio={studio_id}/specialty={specialty_id}";
+        return "/city={city_id}/studio={studio_id}/specialty={specialty_id}/teacher=" + teacher.getId();
     }
 
     @RequestMapping("/city={city_id}/studio={studio_id}/specialty={specialty_id}/teacher={teacher_id}")

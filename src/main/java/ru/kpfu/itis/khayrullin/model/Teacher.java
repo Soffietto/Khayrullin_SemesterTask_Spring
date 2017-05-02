@@ -22,8 +22,10 @@ public class Teacher {
     @JoinColumn(referencedColumnName = "name")
     private Specialty specialty;
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
     private int seniority;
@@ -32,6 +34,7 @@ public class Teacher {
 
     private String regalia;
 
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)

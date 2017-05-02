@@ -20,6 +20,6 @@ public class CityServiceTest {
 
     @Test
     public void cityServiceShouldReturnProperClassName() {
-        assertEquals("class com.sun.proxy.$Proxy48", this.cityService.getClass().toString());
+        assertEquals("class com.sun.proxy.$Proxy49", this.cityService.getClass().toString());
     }
 }

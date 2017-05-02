@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 
-    List<Teacher> findAllByStudioIdAndSpecialtyIdAndCityId(Long studioId, Long specialtyId, Long cityId);
+    List<Teacher> findAllByStudioIdAndSpecialtyNameAndCityId(Long studioId, String specialtyName, Long cityId);
+
+    Teacher findOneByStudioIdAndSpecialtyNameAndCityIdAndLastName(Long studioId, String specialtyName, Long cityId, String lastName);
 
 }

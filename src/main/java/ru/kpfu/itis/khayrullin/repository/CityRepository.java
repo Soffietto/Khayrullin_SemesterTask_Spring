@@ -7,4 +7,5 @@ public interface CityRepository extends JpaRepository<City, Long> {
 
     City findOneById(Long id);
 
+    City findOneByName(String name);
 }

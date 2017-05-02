@@ -8,4 +8,6 @@ import java.util.List;
 public interface SpecialtyRepository extends JpaRepository<Specialty, Long> {
 
     List<Specialty> findAllByCityId(Long cityId);
+
+    Specialty findOneByNameAndCityId(String name, Long cityId);
 }

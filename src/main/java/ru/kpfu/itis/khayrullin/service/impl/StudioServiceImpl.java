@@ -29,6 +29,11 @@ public class StudioServiceImpl implements StudioService {
     }
 
     @Override
+    public Studio findOneByNameAndCityId(String name, Long cityId) {
+        return studioRepository.findOneByNameAndCityId(name, cityId);
+    }
+
+    @Override
     public List<Studio> findAllByCityId(Long city) {
         return studioRepository.findAllByCityId(city);
     }

@@ -12,6 +12,8 @@ public interface SpecialtyService {
 
     List<Specialty> findAllByCityId(Long city);
 
+    Specialty findOneByNameAndCityId(String name, Long cityId);
+
     Specialty findOneById(Long specialtyId);
 
     void delete(Long id);

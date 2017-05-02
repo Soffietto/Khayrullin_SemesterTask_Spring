@@ -34,6 +34,11 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
     @Override
+    public Specialty findOneByNameAndCityId(String name, Long cityId) {
+        return specialtyRepository.findOneByNameAndCityId(name, cityId);
+    }
+
+    @Override
     public Specialty findOneById(Long specialtyId) {
         return specialtyRepository.findOne(specialtyId);
     }

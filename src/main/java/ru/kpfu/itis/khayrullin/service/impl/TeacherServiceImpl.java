@@ -24,8 +24,13 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public List<Teacher> findAllByStudioIdAndSpecialtyIdAndCityId(Long studioId, Long specialtyId, Long cityId) {
-        return teacherRepository.findAllByStudioIdAndSpecialtyIdAndCityId(studioId, specialtyId, cityId);
+    public List<Teacher> findAllByStudioIdAndSpecialtyNameAndCityId(Long studioId, String specialty, Long cityId) {
+        return teacherRepository.findAllByStudioIdAndSpecialtyNameAndCityId(studioId, specialty, cityId);
+    }
+
+    @Override
+    public Teacher findOneByStudioIdAndSpecialtyNameAndCityIdAndLastName(Long studioId, String specialty, Long cityId, String lastName) {
+        return teacherRepository.findOneByStudioIdAndSpecialtyNameAndCityIdAndLastName(studioId, specialty, cityId, lastName);
     }
 
     @Override

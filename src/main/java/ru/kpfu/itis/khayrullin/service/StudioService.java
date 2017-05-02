@@ -10,6 +10,8 @@ public interface StudioService {
 
     Studio findOneById(Long id);
 
+    Studio findOneByNameAndCityId(String name, Long cityId);
+
     List<Studio> findAllByCityId(Long city);
 
     List<Studio> getAll();

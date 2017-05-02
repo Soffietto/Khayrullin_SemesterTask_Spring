@@ -1,5 +1,7 @@
 <#include "welcome.ftl">
 <#include "specialty_list.ftl">
+<#include "specialty_search_form.ftl">
+<hr>
 <#if admin>
 <a href="/admin/city=${city_id}/studio=${studio_id}/new_specialty">New Specialty!</a>
 </#if>
