@@ -5,7 +5,7 @@
     <h4>Teacher: ${teacher_name}</h4>
     <hr>
 </div>
-<div>
+<div class="table">
     <table border="1">
         <tr>
             <th>Monday</th>

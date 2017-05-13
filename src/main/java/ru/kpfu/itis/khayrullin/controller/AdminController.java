@@ -127,7 +127,11 @@ public class AdminController {
     public String getNewTeacherPage(@PathVariable("city_id") Long cityId,
                                     @PathVariable("studio_id") Long studioId,
                                     @PathVariable("specialty_id") Long specialtyId,
+                                    @RequestParam(value = "error", required = false) Boolean error,
                                     Model model) {
+        if (Boolean.TRUE.equals(error)) {
+            model.addAttribute("error", error);
+        }
         User user = getCurrentUser(model);
         City city = cityService.findOneById(cityId);
         Studio studio = studioService.findOneById(studioId);

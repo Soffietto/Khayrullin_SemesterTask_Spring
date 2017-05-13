@@ -4,6 +4,6 @@
 Search:<br>
 <input type="text" name="search">
 <div>
-    <input type="submit" value="Search">
+    <input class="btn-primary" type="submit" value="Search">
 </div>
 </@sf.form>

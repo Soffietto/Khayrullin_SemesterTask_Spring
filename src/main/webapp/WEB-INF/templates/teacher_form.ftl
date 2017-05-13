@@ -1,5 +1,8 @@
 <#assign sf=JspTaglibs["http://www.springframework.org/tags/form"]>
 <#include "welcome.ftl">
+<#if error??>
+Bad creds
+</#if>
 <@sf.form action="/admin/city=${city_id}/studio=${studio_id}/specialty=${specialty_id}/new_teacher" method="post" modelAttribute="teacher">
 <h4>City: ${city_name}</h4>
 <h4>Studio: ${studio_name}</h4>
@@ -18,12 +21,12 @@
     </div>
     <div>
         <@sf.label path="age">Age: </@sf.label>
-        <@sf.input path="age" type="text"/>
+        <@sf.input path="age" type="number"/>
         <@sf.errors path="age"/>
     </div>
     <div>
         <@sf.label path="seniority">Seniority: </@sf.label>
-        <@sf.input path="seniority" type="text"/>
+        <@sf.input path="seniority" type="number"/>
         <@sf.errors path="seniority"/>
     </div>
     <div>
